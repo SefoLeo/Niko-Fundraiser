@@ -1,2 +1,2 @@
-# Niko-Fundraiser
-Niko Fundraiser
+# FundingNiko
+FundingNiko
