@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support {Niko} Vao Sili - Gilbert High Boy's Basketball</title>
+    <title>Support Niko Vao Sili - Gilbert High Boy's Basketball</title>
     
     <style>
         /* All your existing CSS styles remain exactly the same */
@@ -396,7 +396,7 @@
         <div class="container">
             <div class="header-content">
                 <h1><span class="basketball-icon">🏀</span> GO TIGERS! <span class="basketball-icon">🏀</span></h1>
-                <h2>Help Support {<span class="italic-name">Niko</span>} <span class="player-name">VAO SILI</span> on his Basketball Journey</h2>
+                <h2>Help Support <span class="italic-name">Niko</span> <span class="player-name">VAO SILI</span> on his Basketball Journey</h2>
             </div>
         </div>
     </header>
@@ -409,7 +409,7 @@
                 </div>
                 <div class="tiger-pride-images">
                     <div class="tiger-pride-image">
-                        <img src="Niko-photo.png" alt="{niko} Vao Sili - Gilbert High Basketball">
+                        <img src="Niko-photo.png" alt="Niko Vao Sili - Gilbert High Basketball">
                     </div>
                     <div class="tiger-pride-image">
                         <img src="TigerMascot.png" alt="Gilbert High Tigers Mascot">
@@ -489,8 +489,8 @@
     </div>
     
     <p style="font-size: 0.9rem;"><strong>Venmo:</strong> @Lengi-Sili (nikoVao'sMom)</p>
-    <!-- KEEP AUTO-FILL: Use the original working Venmo URL -->
-    <a href="https://venmo.com/Lengi-Sili?txn=pay" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
+    <!-- SIMPLE WEB LINK - No app opening attempt -->
+    <a href="https://venmo.com/Lengi-Sili" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
 </section>
 
         <section class="video-section">
@@ -498,7 +498,7 @@
             <div class="video-container">
                 <iframe 
                     src="https://www.youtube.com/embed/uJtdjiWZs34" 
-                    title="niko Basketball Highlights" 
+                    title="Niko Basketball Highlights" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -514,7 +514,7 @@
             <button class="btn share-btn" id="share-page-btn">Share Niko's Page</button>
             <p style="font-size: 0.8rem;">Email: PrincessLengi@yahoo.com</p>
             <p style="font-size: 0.8rem;">Phone: (602) 350-3834</p>
-            <p style="font-weight: bold; margin-top: 0.4rem; font-size: 0.8rem;">! GO {niko} VAO !</p>
+            <p style="font-weight: bold; margin-top: 0.4rem; font-size: 0.8rem;">! GO NIKO VAO !</p>
         </div>
     </footer>
 
@@ -671,9 +671,9 @@
                 </div>`;
             }).join('');
             
-            // Create Venmo button for right column WITH AUTO-FILL
+            // SIMPLE WEB LINK - No app opening attempt
             const descriptions = [...new Set(cart.map(item => item.description))].join(' + ');
-            const venmoURL = `https://venmo.com/Lengi-Sili?txn=pay&amount=${total}&note=${encodeURIComponent(`Support Niko Vao Sili - ${descriptions}`)}`;
+            const venmoURL = `https://venmo.com/Lengi-Sili?amount=${total}&note=${encodeURIComponent(`Support Niko Vao Sili - ${descriptions}`)}`;
             
             // Remove existing button if any
             const existingBtn = document.getElementById('venmo-donate-btn');
