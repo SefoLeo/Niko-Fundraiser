@@ -479,19 +479,19 @@
         </section>
 
         <section class="venmo-section">
-            <h2 style="font-size: 1.1rem;">Or Choose Your Own Amount</h2>
-            <p style="font-size: 0.9rem;">Support Niko with any amount you'd like!</p>
-            
-            <div style="background: rgba(255,255,255,0.7); padding: 0.8rem; border-radius: 8px; display: inline-block; margin: 0.8rem 0; border: 2px solid #FF6B00;">
-                <div class="venmo-qr">
-                    <img src="LengiSili-venmo.jpg" alt="Venmo QR Code for Lengi Sili">
-                </div>
-            </div>
-            
-            <p style="font-size: 0.9rem;"><strong>Venmo:</strong> @Lengi-Sili (nikoVao'sMom)</p>
-            <!-- Simple Venmo link -->
-            <a href="https://venmo.com/Lengi-Sili?txn=pay" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
-        </section>
+    <h2 style="font-size: 1.1rem;">Or Choose Your Own Amount</h2>
+    <p style="font-size: 0.9rem;">Support Niko with any amount you'd like!</p>
+    
+    <div style="background: rgba(255,255,255,0.7); padding: 0.8rem; border-radius: 8px; display: inline-block; margin: 0.8rem 0; border: 2px solid #FF6B00;">
+        <div class="venmo-qr">
+            <img src="LengiSili-venmo.jpg" alt="Venmo QR Code for Lengi Sili">
+        </div>
+    </div>
+    
+    <p style="font-size: 0.9rem;"><strong>Venmo:</strong> @Lengi-Sili (nikoVao'sMom)</p>
+    <!-- KEEP AUTO-FILL: Use the original working Venmo URL -->
+    <a href="https://venmo.com/Lengi-Sili?txn=pay" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
+</section>
 
         <section class="video-section">
             <h2 style="font-size: 1.3rem; margin-bottom: 1rem;">Introducing the 2025 Team</h2>
@@ -519,12 +519,13 @@
     </footer>
 
     <script>
-    // Shopping Cart System - SIMPLE AND WORKING
+    // Shopping Cart System - COMPLETE AND WORKING
     let cart = [];
     let selectedOptions = new Set();
 
     // Initialize donation options with basketballs
     document.querySelectorAll('.donation-option').forEach(option => {
+        // Basketballs are now inline in the HTML, so we'll find them
         const basketball = option.querySelector('.donation-basketball');
         
         option.addEventListener('click', function() {
@@ -564,11 +565,14 @@
         const basketball = fromElement.querySelector('.donation-basketball');
         if (!basketball) return;
         
+        // Hide the static basketball
         basketball.classList.add('hidden');
         
+        // Get positions
         const fromRect = fromElement.getBoundingClientRect();
         const toRect = toElement.getBoundingClientRect();
         
+        // Create flying basketball
         const flyingBasketball = document.createElement('div');
         flyingBasketball.className = 'flying-basketball';
         flyingBasketball.innerHTML = '🏀';
@@ -577,6 +581,7 @@
         
         document.body.appendChild(flyingBasketball);
         
+        // Calculate animation path
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         
@@ -585,13 +590,24 @@
         const endX = toRect.left + toRect.width/2 + scrollLeft;
         const endY = toRect.top + toRect.height/2 + scrollTop;
         
+        // Calculate control points for a curved path
         const controlX = startX + (endX - startX) * 0.5;
-        const controlY = startY - 100;
+        const controlY = startY - 100; // Curve upward
         
+        // Animate basketball
         const keyframes = [
-            { transform: `translate(0, 0) scale(1)`, opacity: 1 },
-            { transform: `translate(${controlX - startX}px, ${controlY - startY}px) scale(1.2)`, opacity: 0.9 },
-            { transform: `translate(${endX - startX}px, ${endY - startY}px) scale(0.8)`, opacity: 0.7 }
+            { 
+                transform: `translate(0, 0) scale(1)`,
+                opacity: 1
+            },
+            { 
+                transform: `translate(${controlX - startX}px, ${controlY - startY}px) scale(1.2)`,
+                opacity: 0.9
+            },
+            { 
+                transform: `translate(${endX - startX}px, ${endY - startY}px) scale(0.8)`,
+                opacity: 0.7
+            }
         ];
         
         const animation = flyingBasketball.animate(keyframes, {
@@ -599,12 +615,13 @@
             easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
         });
         
+        // Remove flying basketball after animation
         animation.onfinish = () => {
             flyingBasketball.remove();
         };
     }
 
-    // Update cart display
+    // Update cart display to show basketballs for items
     function updateCartDisplay() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
@@ -615,9 +632,11 @@
         
         if (cart.length === 0) {
             itemsHtml = '<div style="color: #999; font-style: italic;">Empty - Select items above</div>';
+            // Remove donate button
             const existingBtn = document.getElementById('venmo-donate-btn');
             if (existingBtn) existingBtn.remove();
         } else {
+            // Group identical items
             const itemCounts = {};
             cart.forEach(item => {
                 const key = `${item.amount}-${item.description}-${item.icon}`;
@@ -625,15 +644,20 @@
                 total += item.amount;
             });
             
+            // Create items list WITH ICONS and basketballs
             itemsHtml = Object.entries(itemCounts).map(([key, count]) => {
                 const [amount, description, icon] = key.split('-');
                 const itemTotal = parseInt(amount) * count;
                 
+                // Flip the left shoe icon
                 let displayIcon = icon;
                 if (description === "Left Baller Shoe") {
                     displayIcon = `<span style="display:inline-block; transform: scaleX(-1);">${icon}</span>`;
+                } else {
+                    displayIcon = icon;
                 }
                 
+                // Add basketball emoji for each item
                 let basketballs = '';
                 for (let i = 0; i < count; i++) {
                     basketballs += '🏀';
@@ -647,9 +671,11 @@
                 </div>`;
             }).join('');
             
+            // Create Venmo button for right column WITH AUTO-FILL
             const descriptions = [...new Set(cart.map(item => item.description))].join(' + ');
             const venmoURL = `https://venmo.com/Lengi-Sili?txn=pay&amount=${total}&note=${encodeURIComponent(`Support Niko Vao Sili - ${descriptions}`)}`;
             
+            // Remove existing button if any
             const existingBtn = document.getElementById('venmo-donate-btn');
             if (existingBtn) existingBtn.remove();
             
@@ -663,6 +689,7 @@
             
             donateColumn.appendChild(donateBtn);
             
+            // Add confetti to the new button
             donateBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 launchConfetti();
@@ -676,7 +703,7 @@
         cartTotal.textContent = `Total: $${total}`;
     }
 
-    // Confetti function
+    // Confetti function - HAPPY & LIVELY! 🎉
     function launchConfetti() {
         const confettiCount = 200;
         const colors = ['#FFD700', '#FF6B00', '#FF0000', '#FFFFFF', '#000000', '#45B7D1', '#FFA07A'];
