@@ -82,18 +82,46 @@
             border-color: #FF6B00;
             animation: selectedPulse 1s infinite;
         }
-        .donation-option h3 { 
-            font-size: 1.5rem; 
-            margin-bottom: 0.2rem; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-        }
+        .donation-option h3 { font-size: 1.5rem; margin-bottom: 0.2rem; }
         .donation-option p { font-size: 1rem; }
         .donation-icon { font-size: 2rem; margin-bottom: 0.3rem; }
 
-        /* Updated $50 donation option with blue text and gold shadows */
+/* Basketball in donation containers */
+.donation-basketball {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.donation-basketball.hidden {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+}
+
+/* Flying basketball animation */
+.flying-basketball {
+    position: fixed;
+    font-size: 1.5rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+        @keyframes selectedPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.9); }
+        }
+
+        /* Flip the left shoe */
+        .left-shoe .donation-icon {
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+        
+        /* Updated $50 donation option with red text and dancing icon */
         .donation-option[data-amount="50"] {
             background: white;
             border: 2px solid #FFD700;
@@ -101,30 +129,11 @@
             overflow: hidden;
         }
 
-        .donation-option[data-amount="50"] h3 {
-            font-size: 1.4rem; /* Slightly smaller font size */
-            color: #0066FF; /* Blue text color */
-            font-weight: bold;
-            text-shadow: 
-                1px 1px 0 #FFD700,
-                -1px -1px 0 #FFD700,
-                1px -1px 0 #FFD700,
-                -1px 1px 0 #FFD700,
-                0 0 3px rgba(255,215,0,0.5); /* Gold shadow */
-            position: relative;
-            z-index: 2;
-        }
-
+        .donation-option[data-amount="50"] h3,
         .donation-option[data-amount="50"] p {
-            font-size: 0.9rem; /* Slightly smaller font size */
-            color: #0066FF; /* Blue text color */
+            color: #FF0000; /* Bright red text */
             font-weight: bold;
-            text-shadow: 
-                1px 1px 0 #FFD700,
-                -1px -1px 0 #FFD700,
-                1px -1px 0 #FFD700,
-                -1px 1px 0 #FFD700,
-                0 0 3px rgba(255,215,0,0.5); /* Gold shadow */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
             position: relative;
             z-index: 2;
         }
@@ -135,7 +144,7 @@
             animation: selectedPulse 1s infinite;
         }
 
-        /* Dancing animation for the $50 icon when selected */
+        /* Dancing animation for the $50 icon when selected - UPDATED */
         .donation-option[data-amount="50"].selected .donation-icon {
             animation: danceMove 1.2s infinite alternate ease-in-out;
             position: relative;
@@ -157,41 +166,6 @@
             100% { 
                 transform: translateX(25px) rotate(10deg); 
             }
-        }
-
-/* Updated Basketball in donation containers - smaller and to the right */
-.donation-basketball {
-    position: static;
-    font-size: 1rem; /* Smaller basketball icon */
-    margin-left: 0.3rem;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.3s ease;
-    opacity: 1;
-}
-
-.donation-basketball.hidden {
-    opacity: 0;
-    transform: scale(0);
-}
-
-/* Flying basketball animation */
-.flying-basketball {
-    position: fixed;
-    font-size: 1.5rem;
-    z-index: 1000;
-    pointer-events: none;
-}
-
-        @keyframes selectedPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.9); }
-        }
-
-        /* Flip the left shoe */
-        .left-shoe .donation-icon {
-            transform: scaleX(-1);
-            display: inline-block;
         }
         
         .btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #FF6B00, #FFD700); color: #000; text-decoration: none; border-radius: 18px; font-weight: bold; border: 2px solid #000; margin: 0.8rem; transition: transform 0.3s; font-size: 1.2rem; }
@@ -554,32 +528,32 @@
             <div class="donation-options">
                 <div class="donation-option" data-amount="5" data-description="Training Snacks" data-icon="🍕">
                     <div class="donation-icon">🍕</div>
-                    <h3>$5<span class="donation-basketball">🏀</span></h3>
+                    <h3>$5</h3>
                     <p>Training Snacks</p>
                 </div>
                 <div class="donation-option" data-amount="10" data-description="2 x Gatorades" data-icon="🥤">
                     <div class="donation-icon">🥤🥤</div>
-                    <h3>$10<span class="donation-basketball">🏀</span></h3>
+                    <h3>$10</h3>
                     <p>2 x Gatorades</p>
                 </div>
                 <div class="donation-option" data-amount="20" data-description="Basketball Socks" data-icon="🧦">
                     <div class="donation-icon">🧦</div>
-                    <h3>$20<span class="donation-basketball">🏀</span></h3>
+                    <h3>$20</h3>
                     <p>Basketball Socks</p>
                 </div>
                 <div class="donation-option left-shoe" data-amount="25" data-description="Left Baller Shoe" data-icon="👟">
                     <div class="donation-icon">👟</div>
-                    <h3>$25<span class="donation-basketball">🏀</span></h3>
+                    <h3>$25</h3>
                     <p>Left Baller Shoe</p>
                 </div>
                 <div class="donation-option" data-amount="25" data-description="Right Baller Shoe" data-icon="👟">
                     <div class="donation-icon">👟</div>
-                    <h3>$25<span class="donation-basketball">🏀</span></h3>
+                    <h3>$25</h3>
                     <p>Right Baller Shoe</p>
                 </div>
                 <div class="donation-option" data-amount="50" data-description="Dance Performance" data-icon="🤼">
                     <div class="donation-icon">🤼</div>
-                    <h3>$50<span class="donation-basketball">🏀</span></h3>
+                    <h3>$50</h3>
                     <p>My Old Bro's will Dance for You!</p>
                 </div>
             </div>
@@ -601,19 +575,19 @@
         </section>
 
         <section class="venmo-section">
-            <h2 style="font-size: 1.1rem;">Or Choose Your Own Amount</h2>
-            <p style="font-size: 0.9rem;">Support Niko with any amount you'd like!</p>
-            
-            <div style="background: rgba(255,255,255,0.7); padding: 0.8rem; border-radius: 8px; display: inline-block; margin: 0.8rem 0; border: 2px solid #FF6B00;">
-                <div class="venmo-qr">
-                    <img src="LengiSili-venmo.jpg" alt="Venmo QR Code for Lengi Sili">
-                </div>
-            </div>
-            
-            <p style="font-size: 0.9rem;"><strong>Venmo:</strong> @Lengi-Sili (nikoVao'sMom)</p>
-            <!-- Working Venmo link with auto-fill -->
-            <a href="https://venmo.com/Lengi-Sili?txn=pay" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
-        </section>
+    <h2 style="font-size: 1.1rem;">Or Choose Your Own Amount</h2>
+    <p style="font-size: 0.9rem;">Support Niko with any amount you'd like!</p>
+    
+    <div style="background: rgba(255,255,255,0.7); padding: 0.8rem; border-radius: 8px; display: inline-block; margin: 0.8rem 0; border: 2px solid #FF6B00;">
+        <div class="venmo-qr">
+            <img src="LengiSili-venmo.jpg" alt="Venmo QR Code for Lengi Sili">
+        </div>
+    </div>
+    
+    <p style="font-size: 0.9rem;"><strong>Venmo:</strong> @Lengi-Sili (nikoVao'sMom)</p>
+    <!-- Updated Venmo link for international users -->
+    <a href="https://venmo.com/Lengi-Sili?txn=pay" class="btn" style="background: linear-gradient(135deg, #3D95CE, #2a7bb8); color: white;" target="_blank">Custom Venmo Donation</a>
+</section>
 
         <!-- Updated Video Section -->
         <section class="video-section">
@@ -648,8 +622,12 @@
 
     // Initialize donation options with basketballs
     document.querySelectorAll('.donation-option').forEach(option => {
-        // Basketballs are now inline in the HTML, so we'll find them
-        const basketball = option.querySelector('.donation-basketball');
+        // Add basketball to each donation option
+        const basketball = document.createElement('div');
+        basketball.className = 'donation-basketball';
+        basketball.innerHTML = '🏀';
+        option.style.position = 'relative';
+        option.appendChild(basketball);
         
         option.addEventListener('click', function() {
             const amount = parseInt(this.getAttribute('data-amount'));
@@ -666,9 +644,7 @@
                 
                 // Return basketball to donation option
                 const basketball = this.querySelector('.donation-basketball');
-                if (basketball) {
-                    basketball.classList.remove('hidden');
-                }
+                basketball.classList.remove('hidden');
             } else {
                 // Add to cart
                 selectedOptions.add(optionId);
@@ -794,9 +770,9 @@
                 </div>`;
             }).join('');
             
-            // Create Venmo button for right column WITH AUTO-FILL
+            // Create Venmo button for right column
             const descriptions = [...new Set(cart.map(item => item.description))].join(' + ');
-            const venmoURL = `https://venmo.com/Lengi-Sili?txn=pay&amount=${total}&note=${encodeURIComponent(`Support Niko Vao Sili - ${descriptions}`)}`;
+            const venmoURL = `https://venmo.com/${encodeURIComponent('Lengi-Sili')}?txn=pay&amount=${total}&note=${encodeURIComponent(`Support Niko Vao Sili - ${descriptions}`)}`;
             
             // Remove existing button if any
             const existingBtn = document.getElementById('venmo-donate-btn');
@@ -806,7 +782,7 @@
             donateBtn.href = venmoURL;
             donateBtn.className = 'btn';
             donateBtn.target = '_blank';
-            donateBtn.textContent = `Donate $${total} via Venmo`;
+            donateBtn.textContent = `Click to Donate (Venmo)`;
             donateBtn.id = 'venmo-donate-btn';
             donateBtn.style.marginTop = '1rem';
             
